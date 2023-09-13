@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UA TEST</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/ua-parser-js/src/ua-parser.min.js"></script>
+</head>
+<body style="margin: 2rem">
+    <h1>User Agent Test Page</h1>
+    <p id="ua"></p>
+    
+    <div>
+        <p><b>Device: <span style="color:red; text-decoration: underline;" id="device"></span> </b></p> 
+        <p><b>Browser: <span style="color:red; text-decoration: underline;" id="browser"></span> </b></p> 
+        <p><b>OS: <span style="color:red; text-decoration: underline;" id="os"></span> </b></p> 
+    </div>
+
+    <hr>
+    <div>
+        <h2> Window Size: </h2>
+        <p>Width: <span id="w"></span></p>
+        <p>Height: <span id="h"></span></p>
+    </div>
+</body>
+
+<script>
+const ua = window.navigator.userAgent;
+console.log(ua);
+
+let parser = new UAParser(ua);
+const parserRes = parser.getResult();
+console.log(parserRes);
+
+document.getElementById('ua').innerText = ua;
+document.getElementById('device').innerText = parserRes.device.type || 'desktop';
+document.getElementById('browser').innerText = parserRes.browser.name + " " + parserRes.browser.version;
+document.getElementById('os').innerText = parserRes.os.name + " " + parserRes.os.version;
+
+document.getElementById('w').innerText = window.innerWidth;
+document.getElementById('h').innerText = window.innerHeight;
+
+
+</script>
+</html>
