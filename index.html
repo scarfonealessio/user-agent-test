@@ -68,8 +68,10 @@
         const type = event.target.type;
         const angle = event.target.angle;
         document.getElementById('orientation').innerText = type + ", " + angle + " degrees.";
-        document.getElementById('w').innerText = window.innerWidth;
-        document.getElementById('h').innerText = window.innerHeight;
+        setTimeout(() => {
+            document.getElementById('w').innerText = window.innerWidth;
+            document.getElementById('h').innerText = window.innerHeight;
+        }, 1000)
     });
 
 </script>
