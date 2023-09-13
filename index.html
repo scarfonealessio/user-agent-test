@@ -11,7 +11,10 @@
     <p id="ua"></p>
     
     <div>
-        <p><b>Device: <span style="color:red; text-decoration: underline;" id="device"></span> </b></p> 
+        <p><b>Device Type: <span style="color:red; text-decoration: underline;" id="ddevice"></span> </b></p> 
+        
+        <p><b>Device Classification: <span style="color:red; text-decoration: underline;" id="device"></span> </b></p> 
+
         <p><b>Browser: <span style="color:red; text-decoration: underline;" id="browser"></span> </b></p> 
         <p><b>OS: <span style="color:red; text-decoration: underline;" id="os"></span> </b></p> 
     </div>
@@ -33,7 +36,8 @@ const parserRes = parser.getResult();
 console.log(parserRes);
 
 document.getElementById('ua').innerText = ua;
-document.getElementById('device').innerText = parserRes.device.type || 'desktop';
+document.getElementById('ddevice').innerText = parserRes.device.type || 'desktop';
+document.getElementById('device').innerText = ['mobile', 'tablet'].includes(parserRes.device.type) ? 'mobile' : 'desktop';
 document.getElementById('browser').innerText = parserRes.browser.name + " " + parserRes.browser.version;
 document.getElementById('os').innerText = parserRes.os.name + " " + parserRes.os.version;
 
