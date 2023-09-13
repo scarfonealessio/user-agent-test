@@ -19,12 +19,18 @@
         <p><b>OS: <span style="color:red; text-decoration: underline;" id="os"></span> </b></p> 
     </div>
 
-    <hr>
-    <div>
-        <h2> Window Size: </h2>
-        <p>Width: <span id="w"></span></p>
-        <p>Height: <span id="h"></span></p>
-    </div>
+    <details>
+        <summary> Window Size: </summary>
+        <p>Width: <span style="color:red; text-decoration: underline;" id="w"></span></p>
+        <p>Height: <span style="color:red; text-decoration: underline;" id="h"></span></p>
+    </details>
+
+    <details>
+        <summary> Device Info </summary>
+        <p><b>Has TouchScreen: <span style="color:red; text-decoration: underline;" id="touchScreen"></span></b></p>
+        <p><b>Orientation: <span style="color:red; text-decoration: underline;" id="orientation"></span></b></p>
+    </details>
+
 </body>
 
 <script>
@@ -44,6 +50,26 @@ document.getElementById('os').innerText = parserRes.os.name + " " + parserRes.os
 document.getElementById('w').innerText = window.innerWidth;
 document.getElementById('h').innerText = window.innerHeight;
 
+
+
+let hasTouchScreen = false;
+if ("maxTouchPoints" in navigator) {
+    hasTouchScreen = navigator.maxTouchPoints > 0;
+} else if ("msMaxTouchPoints" in navigator) {
+    hasTouchScreen = navigator.msMaxTouchPoints > 0;
+}
+
+document.getElementById('touchScreen').innerText = hasTouchScreen;
+
+
+document.getElementById('orientation').innerText = screen.orientation.type;
+const orientationChanged = false;
+addEventListener(
+  "orientationchange",
+  () => {
+    document.getElementById('orientation').innerText = screen.orientation.type;
+  }
+);
 
 </script>
 </html>
